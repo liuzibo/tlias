@@ -31,7 +31,7 @@ public class DeptController {
     }
 
     /**
-     * 根据id删除部门 - delete http://localhost:8080/depts?id=1
+     * 根据id删除部门 - delete
      */
     @DeleteMapping
     public Result delete(Integer id){
@@ -40,7 +40,7 @@ public class DeptController {
     }
 
     /**
-     * 新增部门 - POST http://localhost:8080/depts   请求参数：{"name":"研发部"}
+     * 新增部门 - POST
      */
     @PostMapping
     public Result save(@RequestBody Dept dept){
@@ -50,7 +50,7 @@ public class DeptController {
     }
 
     /**
-     * 根据ID查询 - GET http://localhost:8080/depts/1
+     * 根据ID查询 - GET
      */
     @GetMapping("/{id}")
     public Result getById(@PathVariable Integer id){
@@ -61,7 +61,7 @@ public class DeptController {
 
 
     /**
-     * 修改部门 - PUT http://localhost:8080/depts  请求参数：{"id":1,"name":"研发部"}
+     * 修改部门 - PUT
      */
     @PutMapping
     public Result update(@RequestBody Dept dept){
