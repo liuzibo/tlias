@@ -7,6 +7,10 @@ spring:
     url: jdbc:mariadb://localhost:3306/tlias
     username: liuzibo
     password: 201654
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
@@ -14,3 +18,10 @@ mybatis:
 pagehelper:
   reasonable: true
   helper-dialect: mariadb
+
+#阿里云OSS
+aliyun:
+  oss:
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    bucketName: javaweb-lzb
+    region: cn-beijing

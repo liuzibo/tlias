@@ -7,9 +7,7 @@ import com.zeber.pojo.Result;
 import com.zeber.service.EmpService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 员工管理
@@ -27,6 +25,16 @@ public class EmpController {
         log.info("查询请求参数： {}", empQueryParam);
         PageResult<Emp> pageResult = empService.page(empQueryParam);
         return Result.success(pageResult);
+    }
+
+    /**
+     * 添加员工
+     */
+    @PostMapping
+    public Result save(@RequestBody Emp emp){
+        log.info("请求参数emp: {}", emp);
+        empService.save(emp);
+        return Result.success();
     }
 
 }
