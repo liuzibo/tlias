@@ -1,6 +1,7 @@
 package com.zeber.controller;
 
 
+import com.zeber.anno.LogOperation;
 import com.zeber.pojo.Clazz;
 import com.zeber.pojo.ClazzQueryParam;
 import com.zeber.pojo.PageResult;
@@ -43,6 +44,7 @@ public class ClazzController {
         return Result.success();
     }
 
+    @LogOperation
     @PostMapping
     public Result save(@RequestBody Clazz clazz){
         log.info("clazzQueryParam:{}",clazz);

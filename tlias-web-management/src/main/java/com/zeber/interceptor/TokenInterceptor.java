@@ -1,6 +1,8 @@
 package com.zeber.interceptor;
 
+import com.zeber.utils.CurrentHolder;
 import com.zeber.utils.JwtUtils;
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +38,9 @@ public class TokenInterceptor implements HandlerInterceptor {
 
         //5. 解析token，如果解析失败，返回错误结果（未登录）。
         try {
-            JwtUtils.parseJWT(jwt);
+            Claims claims = JwtUtils.parseJWT(jwt);
+            Integer empId = Integer.valueOf(claims.get("id").toString());
+            CurrentHolder.setCurrentId(empId);
         } catch (Exception e) {
             e.printStackTrace();
             log.info("解析令牌失败, 返回错误结果");
@@ -47,6 +51,12 @@ public class TokenInterceptor implements HandlerInterceptor {
         //6. 放行。
         log.info("令牌合法, 放行");
         return true;
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        // 移除当前线程中的数据
+        CurrentHolder.remove();
     }
 
 }
