@@ -2,10 +2,7 @@ package com.zeber.mapper;
 
 import com.zeber.pojo.Emp;
 import com.zeber.pojo.EmpQueryParam;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.MapKey;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Map;
@@ -36,4 +33,10 @@ public interface EmpMapper {
 
     @MapKey("name")
     List<Map> countEmpGenderData();
+
+    @Select("select * from emp")
+    List<Emp> findAll();
+
+    @Select("select * from emp where username = #{username} and password = #{password}")
+    Emp getUsernameAndPassword(Emp emp);
 }

@@ -1,5 +1,6 @@
 package com.zeber.controller;
 
+import com.zeber.pojo.ClazzOption;
 import com.zeber.pojo.JobOption;
 import com.zeber.pojo.Result;
 import com.zeber.service.ReportService;
@@ -40,4 +41,21 @@ public class ReportController {
         List<Map> genderList = reportService.getEmpGenderData();
         return Result.success(genderList);
     }
+
+    @GetMapping("/studentDegreeData")
+    public Result getStudentDegreeData(){
+        log.info("统计员工性别信息");
+        List<Map> degreeList = reportService.getStudentDegreeData();
+        return Result.success(degreeList);
+    }
+
+    @GetMapping("/studentCountData")
+    public Result getStudentCountData(){
+        log.info("统计员工性别信息");
+        ClazzOption clazzOption = reportService.getClazzData();
+        return Result.success(clazzOption);
+    }
+
+
+
 }

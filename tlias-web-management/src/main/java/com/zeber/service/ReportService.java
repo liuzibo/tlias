@@ -1,5 +1,6 @@
 package com.zeber.service;
 
+import com.zeber.pojo.ClazzOption;
 import com.zeber.pojo.JobOption;
 
 import java.util.List;
@@ -13,4 +14,8 @@ public interface ReportService {
     JobOption getEmpJobData();
 
     List<Map> getEmpGenderData();
+
+    List<Map> getStudentDegreeData();
+
+    ClazzOption getClazzData();
 }

@@ -1,6 +1,8 @@
 package com.zeber.service.impl;
 
 import com.zeber.mapper.EmpMapper;
+import com.zeber.mapper.StudentMapper;
+import com.zeber.pojo.ClazzOption;
 import com.zeber.pojo.JobOption;
 import com.zeber.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ public class ReportServiceImpl implements ReportService {
 
     @Autowired
     private EmpMapper empMapper;
+    @Autowired
+    private StudentMapper studentMapper;
 
     @Override
     public JobOption getEmpJobData() {
@@ -27,5 +31,18 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public List<Map> getEmpGenderData() {
         return empMapper.countEmpGenderData();
+    }
+
+    @Override
+    public List<Map> getStudentDegreeData() {
+        return studentMapper.countDegreeData();
+    }
+
+    @Override
+    public ClazzOption getClazzData() {
+        List<Map<String,Object>> list = studentMapper.countClazzData();
+        List<Object> clazzList = list.stream().map(dataMap -> dataMap.get("clazzname")).toList();
+        List<Object> dataList = list.stream().map(dataMap -> dataMap.get("total")).toList();
+        return new ClazzOption(clazzList, dataList);
     }
 }
